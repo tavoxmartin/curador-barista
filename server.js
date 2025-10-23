@@ -74,7 +74,9 @@ app.post('/api/crear-enlace-compra', async (req, res) => {
         const { data, error } = await resend.emails.send({
             // IMPORTANTE: En el plan gratuito de Resend,
             // solo puedes enviar desde este email de prueba.
-            from: 'onboarding@resend.dev',
+            //from: 'onboarding@resend.dev',
+	    // POR ESTO:
+              from: 'pedidos@hola.curador.coffee', 
             // El 'to' es el email que nos dio el agente
             to: emailCliente,
             subject: 'Tu enlace de compra de Curador.es',

@@ -48,7 +48,7 @@ const PRODUCTOS_DB = {
 // Las claves (ej. "brasil sure shot") deben coincidir EXACTAMENTE
 // con las claves de PRODUCTOS_DB.
 const RECETAS_DB = {
-    "brasil sure shot": `
+    "56340610482525": `//Brasil Serrinha
         <strong>Receta Sugerida para V60:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:15 (20g de café por 300ml de agua)</li>
@@ -61,7 +61,16 @@ const RECETAS_DB = {
                 <li>Tiempo total de extracción: 2:30 - 3:00 minutos.</li>
             </ol>
     `,
-    "peru organico dark knight": `
+"57568609567069": `//Brasil Sure Shot
+        <strong>Receta Sugerida para Espresso:</strong><br>
+        <ul>
+            <li><strong>Ratio:</strong> 1:2 (18g de café en el portafiltro)</li>
+            <li><strong>Resultado:</strong> 36g de bebida en la taza</li>
+            <li><strong>Agua:</strong> 93°C</li>
+            <li><strong>Molienda:</strong> Fina</li>
+            <li><strong>Tiempo de extracción:</strong> 28 - 32 segundos.</li>
+    `,
+    "56529625743709": ` //Perú Orgánico Dark Knight
         <strong>Receta Sugerida para Prensa Francesa:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:12 (30g de café por 360ml de agua)</li>
@@ -73,7 +82,7 @@ const RECETAS_DB = {
                 <li>Espera a que decante y presiona el émbolo suavemente.</li>
             </ol>
     `,
-    "colombia la piragua": `
+    "58517184217437": `
         <strong>Receta Sugerida para Espresso:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:2 (18g de café en el portafiltro)</li>
@@ -82,7 +91,7 @@ const RECETAS_DB = {
             <li><strong>Molienda:</strong> Fina</li>
             <li><strong>Tiempo de extracción:</strong> 28 - 32 segundos.</li>
     `,
- "colombia la fabrica": `
+ "57507088892253": `
         <strong>Receta Sugerida para Aeropress:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:15 (18g de café en el portafiltro)</li>
@@ -96,7 +105,83 @@ const RECETAS_DB = {
                 <li>Vierte el resto del agua lentamente en círculos.</li>
                 <li>Tiempo total de extracción: 2:30 - 3:00 minutos.</li>
             </ol>        
-    `
+    `,
+"57650104959325": `
+        <strong>Receta Sugerida para Aeropress:</strong><br>
+        <ul>
+            <li><strong>Ratio:</strong> 1:15 (18g de café en el portafiltro)</li>
+            <li><strong>Resultado:</strong> 270g de bebida en la taza</li>
+            <li><strong>Agua:</strong> 90°C</li>
+            <li><strong>Molienda:</strong> Media</li>
+            <li><strong>Tiempo de extracción:</strong> 2 minutos y 15 segundos.</li>
+            <li><strong>Pasos:</strong></li>
+            <ol>
+                <li>Vierte 50ml de agua para el "bloom" y espera 30 segundos.</li>
+                <li>Vierte el resto del agua lentamente en círculos.</li>
+                <li>Tiempo total de extracción: 2:30 - 3:00 minutos.</li>
+            </ol>        
+    `,	
+"56529511678301": `
+        <strong>Receta Sugerida para Aeropress:</strong><br>
+        <ul>
+            <li><strong>Ratio:</strong> 1:15 (18g de café en el portafiltro)</li>
+            <li><strong>Resultado:</strong> 270g de bebida en la taza</li>
+            <li><strong>Agua:</strong> 90°C</li>
+            <li><strong>Molienda:</strong> Media</li>
+            <li><strong>Tiempo de extracción:</strong> 2 minutos y 15 segundos.</li>
+            <li><strong>Pasos:</strong></li>
+            <ol>
+                <li>Vierte 50ml de agua para el "bloom" y espera 30 segundos.</li>
+                <li>Vierte el resto del agua lentamente en círculos.</li>
+                <li>Tiempo total de extracción: 2:30 - 3:00 minutos.</li>
+            </ol>        
+    `,
+"56332719653213": `//Kenia Karimikui
+        <strong>Receta Sugerida para V60:</strong><br>
+        <ul>
+            <li><strong>Ratio:</strong> 1:15 (20g de café por 300ml de agua)</li>
+            <li><strong>Agua:</strong> 92°C</li>
+            <li><strong>Molienda:</strong> Media-fina (como sal de mesa)</li>
+            <li><strong>Pasos:</strong></li>
+            <ol>
+                <li>Vierte 50ml de agua para el "bloom" y espera 30 segundos.</li>
+                <li>Vierte el resto del agua lentamente en círculos.</li>
+                <li>Tiempo total de extracción: 2:30 - 3:00 minutos.</li>
+            </ol>
+    `,
+"58197453767005": `//Guatemala Las Flores
+        <strong>Receta Sugerida para Espresso:</strong><br>
+        <ul>
+            <li><strong>Ratio:</strong> 1:2 (18g de café en el portafiltro)</li>
+            <li><strong>Resultado:</strong> 36g de bebida en la taza</li>
+            <li><strong>Agua:</strong> 93°C</li>
+            <li><strong>Molienda:</strong> Fina</li>
+            <li><strong>Tiempo de extracción:</strong> 28 - 32 segundos.</li>
+    `,
+"58838890316125": `//Colombia Bubble Gum
+        <strong>Receta Sugerida para Moka Italiana:</strong><br>
+        <ul>
+            <li><strong>Ratio:</strong> 1:15 (20g de café en el portafiltro)</li>
+            <li><strong>Agua:</strong> 94°C</li>
+            <li><strong>Molienda:</strong> Fina</li>
+            <li><strong>Tiempo de extracción:</strong> 3 minutos.</li>
+    `,
+"56120635818333": `//Venezuela Tukeke
+        <strong>Receta Sugerida para Moka Italiana:</strong><br>
+        <ul>
+            <li><strong>Ratio:</strong> 1:15 (20g de café en el portafiltro)</li>
+            <li><strong>Agua:</strong> 94°C</li>
+            <li><strong>Molienda:</strong> Fina</li>
+            <li><strong>Tiempo de extracción:</strong> 3 minutos.</li>
+    `,
+"58767230959965": `//Venezuela Agua Fria Pink Bourbon
+        <strong>Receta Sugerida para Moka Italiana:</strong><br>
+        <ul>
+            <li><strong>Ratio:</strong> 1:15 (20g de café en el portafiltro)</li>
+            <li><strong>Agua:</strong> 94°C</li>
+            <li><strong>Molienda:</strong> Fina</li>
+            <li><strong>Tiempo de extracción:</strong> 3 minutos.</li>
+    `,
     // ¡Añade aquí tus otras recetas!
 };
 

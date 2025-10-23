@@ -29,8 +29,18 @@ app.use(express.json());
  */
 const TIENDA_URL = "https://curador.es";
 const PRODUCTOS_DB = {
-    "etiopia guji": "44888195432688", 
-    "colombia supremo": "44888195432699",
+    "brasil sure shot": "57568609567069", 
+    "peru organico dark knight": "56529625743709",
+    "colombia la piragua": "57650104959325", 
+    "colombia la fabrica": "57507088892253",
+    "venezuela Agua Fria Pink Bourbon": "58767230959965", 
+    "venezuela Los Naranjos": "58517184217437",
+    "venezuela Tukeke": "56120635818333", 
+    "brasil serrinha": "56340610482525",
+    "etiopia burtukaana": "56529511678301",
+    "kenia karimikui aa": "56332719653213", 
+    "guatemala natural": "58197453767005",
+    "colombia bubble gum": "58838890316125", 
 };
 
 /*

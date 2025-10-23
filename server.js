@@ -28,9 +28,18 @@ const TIENDA_URL = "https://curador.es";
 
 // Tu base de datos de IDs de productos
 const PRODUCTOS_DB = {
-    "etiopia guji": "44888195432688", 
-    "colombia supremo": "44888195432699",
-    "brasil sure shot": "57568609567069" // Añadido desde tu log
+    "brasil sure shot": "57568609567069", 
+    "peru organico dark knight": "56529625743709",
+    "colombia la piragua": "57650104959325", 
+    "colombia la fabrica": "57507088892253",
+    "venezuela Agua Fria Pink Bourbon": "58767230959965", 
+    "venezuela Los Naranjos": "58517184217437",
+    "venezuela Tukeke": "56120635818333", 
+    "brasil serrinha": "56340610482525",
+    "etiopia burtukaana": "56529511678301",
+    "kenia karimikui aa": "56332719653213", 
+    "guatemala natural": "58197453767005",
+    "colombia bubble gum": "58838890316125", 
 };
 
 // --- ¡NUEVO! ---
@@ -38,7 +47,7 @@ const PRODUCTOS_DB = {
 // Las claves (ej. "brasil sure shot") deben coincidir EXACTAMENTE
 // con las claves de PRODUCTOS_DB.
 const RECETAS_DB = {
-    "etiopia guji": `
+    "brasil sure shot": `
         <strong>Receta Sugerida para V60:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:15 (20g de café por 300ml de agua)</li>
@@ -51,7 +60,7 @@ const RECETAS_DB = {
                 <li>Tiempo total de extracción: 2:30 - 3:00 minutos.</li>
             </ol>
     `,
-    "colombia supremo": `
+    "peru organico dark knight": `
         <strong>Receta Sugerida para Prensa Francesa:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:12 (30g de café por 360ml de agua)</li>
@@ -63,7 +72,7 @@ const RECETAS_DB = {
                 <li>Espera a que decante y presiona el émbolo suavemente.</li>
             </ol>
     `,
-    "brasil sure shot": `
+    "colombia la piragua": `
         <strong>Receta Sugerida para Espresso:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:2 (18g de café en el portafiltro)</li>
@@ -71,7 +80,21 @@ const RECETAS_DB = {
             <li><strong>Agua:</strong> 93°C</li>
             <li><strong>Molienda:</strong> Fina</li>
             <li><strong>Tiempo de extracción:</strong> 28 - 32 segundos.</li>
-        </ol>
+    `,
+ "colombia la fabrica": `
+        <strong>Receta Sugerida para Aeropress:</strong><br>
+        <ul>
+            <li><strong>Ratio:</strong> 1:15 (18g de café en el portafiltro)</li>
+            <li><strong>Resultado:</strong> 270g de bebida en la taza</li>
+            <li><strong>Agua:</strong> 90°C</li>
+            <li><strong>Molienda:</strong> Media</li>
+            <li><strong>Tiempo de extracción:</strong> 2 minutos y 15 segundos.</li>
+            <li><strong>Pasos:</strong></li>
+            <ol>
+                <li>Vierte 50ml de agua para el "bloom" y espera 30 segundos.</li>
+                <li>Vierte el resto del agua lentamente en círculos.</li>
+                <li>Tiempo total de extracción: 2:30 - 3:00 minutos.</li>
+            </ol>        
     `
     // ¡Añade aquí tus otras recetas!
 };

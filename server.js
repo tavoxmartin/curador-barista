@@ -41,12 +41,12 @@ const TIENDA_URL = "https://curador.es";
 const PRODUCTOS_DB = {
     // "nombre en minúsculas": "ID_DE_VARIANTE"
     "brasil sure shot": "57568609567069", 
-    "peru organico dark knight": "56529625743709",
+    "peru orgánico dark knight": "56529625743709",
     "colombia la piragua": "57650104959325", 
     "colombia la fabrica": "57507088892253",
-    "venezuela Agua Fria Pink Bourbon": "58767230959965", 
-    "venezuela Los Naranjos": "58517184217437",
-    "venezuela Tukeke": "56120635818333", 
+    "venezuela agua fria pink bourbon": "58767230959965", 
+    "venezuela los naranjos": "58517184217437",
+    "venezuela tukeke": "56120635818333", 
     "brasil serrinha": "56340610482525",
     "etiopia burtukaana": "56529511678301",
     "kenia karimikui aa": "56332719653213", 
@@ -80,7 +80,7 @@ const RECETAS_DB = {
             <li><strong>Molienda:</strong> Fina</li>
             <li><strong>Tiempo de extracción:</strong> 28 - 32 segundos.</li>
     `,
-    "peru organico dark knight": ` //Perú Orgánico Dark Knight
+    "peru orgánico dark knight": ` //Perú Orgánico Dark Knight
         <strong>Receta Sugerida para Prensa Francesa:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:12 (30g de café por 360ml de agua)</li>
@@ -92,7 +92,7 @@ const RECETAS_DB = {
                 <li>Espera a que decante y presiona el émbolo suavemente.</li>
             </ol>
     `,
-    "venezuela Los Naranjos": `
+    "venezuela los naranjos": `
         <strong>Receta Sugerida para Espresso:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:2 (18g de café en el portafiltro)</li>
@@ -176,7 +176,7 @@ const RECETAS_DB = {
             <li><strong>Molienda:</strong> Fina</li>
             <li><strong>Tiempo de extracción:</strong> 3 minutos.</li>
     `,
-"venezuela Tukeke": `//Venezuela Tukeke
+"venezuela tukeke": `//Venezuela Tukeke
         <strong>Receta Sugerida para Moka Italiana:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:15 (20g de café en el portafiltro)</li>
@@ -184,7 +184,7 @@ const RECETAS_DB = {
             <li><strong>Molienda:</strong> Fina</li>
             <li><strong>Tiempo de extracción:</strong> 3 minutos.</li>
     `,
-"venezuela Agua Fria Pink Bourbon": `//Venezuela Agua Fria Pink Bourbon
+"venezuela agua fria Pink bourbon": `//Venezuela Agua Fria Pink Bourbon
         <strong>Receta Sugerida para Moka Italiana:</strong><br>
         <ul>
             <li><strong>Ratio:</strong> 1:15 (20g de café en el portafiltro)</li>
@@ -255,7 +255,8 @@ app.post('/api/crear-enlace-compra', async (req, res) => {
     try {
         const { data, error } = await resend.emails.send({
             // (Recuerda cambiar 'from' cuando verifiques tu dominio 'curador.es' en Resend)
-            from: 'onboarding@resend.dev', 
+            //from: 'onboarding@resend.dev',
+            from: 'pedidos@hola.curador.coffee', 
             to: emailCliente, // El email que nos dio el usuario
             subject: 'Tu enlace de compra y receta de Curador.es', // Asunto actualizado
             html: htmlBody // El HTML que acabamos de construir

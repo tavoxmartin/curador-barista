@@ -105,4 +105,4 @@ app.post('/api/crear-enlace-compra', async (req, res) => {
 app.listen(port, () => {
     console.log(`¡Servidor Backend (Webhook) iniciado! 🚀`);
     console.log(`Escuchando en http://localhost:${port}`);
-});});
+});

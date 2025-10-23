@@ -47,6 +47,7 @@ const PRODUCTOS_DB = {
 // Tu base de datos de recetas.
 // Las claves (ej. "brasil sure shot") deben coincidir EXACTAMENTE
 // con las claves de PRODUCTOS_DB.
+const productoKey = productoNombre.toLowerCase().trim();
 const RECETAS_DB = {
     "56340610482525": `//Brasil Serrinha
         <strong>Receta Sugerida para V60:</strong><br>

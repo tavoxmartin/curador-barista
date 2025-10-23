@@ -2,102 +2,107 @@
  * -------------------------------------------
  * PASO 1: IMPORTAR LAS HERRAMIENTAS
  * -------------------------------------------
- * Aquí le decimos a Node.js que cargue las
- * herramientas (paquetes) que acabamos de instalar.
  */
-const express = require('express'); // El framework para crear el servidor
-const cors = require('cors');       // El middleware para permitir conexiones externas
+const express = require('express');
+const cors = require('cors');
+// ¡NUEVA HERRAMIENTA IMPORTADA!
+const { Resend } = require('resend');
 
 /*
  * -------------------------------------------
  * PASO 2: CONFIGURACIÓN INICIAL
  * -------------------------------------------
  */
-const app = express(); // 'app' es nuestro servidor
-const port = 3000;     // El puerto donde escuchará en tu computadora (localhost:3000)
+const app = express();
+const port = 3000;
 
-// Middlewares (Configuraciones que se ejecutan en cada petición)
-app.use(cors());       // Usar CORS: permite que Eleven Labs llame a este servidor
-app.use(express.json()); // Usar express.json: permite al servidor entender datos en formato JSON
+// Configurar Resend, leyendo la API Key de forma segura desde las variables de entorno
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+app.use(cors());
+app.use(express.json());
 
 /*
  * -------------------------------------------
  * PASO 3: CONFIGURACIÓN DE TU TIENDA
  * -------------------------------------------
- * Aquí pones los datos de tus productos de Shopify.
  */
-const TIENDA_URL = "https://curador.es"; // La URL base de tu tienda
-
-// ¡IMPORTANTE! Esta es tu "base de datos" de productos.
-// Debes buscar los IDs de VARIANTE (Variant ID) numéricos en tu panel de Shopify.
-// (Ve a Productos -> [Tu Producto] -> Variantes -> Editar -> El ID está en la URL)
+const TIENDA_URL = "https://curador.es";
 const PRODUCTOS_DB = {
-    // "nombre del producto (en minúsculas)": "ID_DE_VARIANTE_NUMERICO",
-    "colombia la fabrica": "57507088892253", 
-    "brasil sure shot": "57568609567069",
-    // Ejemplo de cómo añadir más:
-    // "kenya aa": "44888195432700" 
+    "etiopia guji": "44888195432688", 
+    "colombia supremo": "44888195432699",
 };
 
 /*
  * -------------------------------------------
- * PASO 4: EL WEBHOOK (EL PUNTO DE ENTRADA)
+ * PASO 4: EL WEBHOOK (CON ENVÍO DE EMAIL REAL)
  * -------------------------------------------
- * Aquí definimos la URL que Eleven Labs llamará.
- * Crearemos la ruta: /api/crear-enlace-compra
  */
 app.post('/api/crear-enlace-compra', async (req, res) => {
     
-    // 1. Leer los datos que nos envía Eleven Labs (vienen en 'req.body')
-    // Asumimos que Eleven Labs nos envía: { "productoNombre": "...", "emailCliente": "..." }
     const { productoNombre, emailCliente } = req.body;
-    
-    // Imprimimos en nuestra terminal lo que recibimos (para depurar)
     console.log(`[WEBHOOK RECIBIDO] Petición para: ${productoNombre}, Email: ${emailCliente}`);
 
-    // 2. Validar que los datos llegaron
     if (!productoNombre || !emailCliente) {
         console.log("Error: Faltaron datos en la petición.");
-        // Devolvemos un error 400 (Mala Petición)
         return res.status(400).json({ status: "error", message: "Falta productoNombre o emailCliente" });
     }
 
-    // 3. Buscar el producto en nuestra base de datos
     const variantId = PRODUCTOS_DB[productoNombre.toLowerCase().trim()];
 
     if (!variantId) {
         console.log(`Error: Producto no encontrado: ${productoNombre}`);
-        // Devolvemos una respuesta JSON a Eleven Labs avisando
-        // El agente de IA podrá leer este 'message' y decirle al usuario.
         return res.json({ status: "producto_no_encontrado", message: "Ese producto no lo pude encontrar." });
     }
 
-    // 4. Construir el enlace del carrito
-    // El formato de Shopify para añadir al carrito es: /cart/VARIANT_ID:QUANTITY
     const enlaceCarrito = `${TIENDA_URL}/cart/${variantId}:1`;
     console.log(`Enlace de carrito creado: ${enlaceCarrito}`);
 
-    // 5. (SIMULACIÓN) Enviar el correo electrónico
-    // En un proyecto real, aquí llamarías a una API de email (ej. SendGrid)
-    // Por ahora, solo simulamos que funciona:
-    console.log(`SIMULACIÓN: Email enviado a ${emailCliente} con el enlace: ${enlaceCarrito}`);
+    // --- ¡AQUÍ EMPIEZA EL ENVÍO DE EMAIL REAL! ---
+    try {
+        // Usamos la herramienta 'resend' para enviar el correo
+        const { data, error } = await resend.emails.send({
+            // IMPORTANTE: En el plan gratuito de Resend,
+            // solo puedes enviar desde este email de prueba.
+            from: 'onboarding@resend.dev',
+            // El 'to' es el email que nos dio el agente
+            to: emailCliente,
+            subject: 'Tu enlace de compra de Curador.es',
+            // El cuerpo del email, puede ser HTML
+            html: `¡Hola! <br><br>
+                   Tu asistente barista ha preparado tu carrito. <br><br>
+                   <strong><a href="${enlaceCarrito}">Haz clic aquí para finalizar tu compra</a></strong>
+                   <br><br>
+                   ¡Que disfrutes tu café!`
+        });
 
-    // 6. Responder a Eleven Labs que todo salió bien
-    // El agente de IA recibirá este JSON y sabrá qué decirle al usuario.
-    res.json({ 
-        status: "ok", 
-        message: "Correo enviado exitosamente" 
-    });
+        // Si Resend da un error
+        if (error) {
+            console.error("Error al enviar email desde Resend:", error);
+            // Le avisamos a ElevenLabs que el email falló
+            return res.json({ status: "error_email", message: "Tuve un problema al enviar el correo." });
+        }
+
+        // ¡Todo salió bien!
+        console.log(`Email enviado exitosamente, ID: ${data.id}`);
+        res.json({ 
+            status: "ok", 
+            message: "Correo enviado exitosamente" 
+        });
+
+    } catch (error) {
+        // Error general del servidor
+        console.error("Error general en el Webhook:", error);
+        res.status(500).json({ status: "error_servidor", message: "Hubo un fallo general en el sistema." });
+    }
 });
 
 /*
  * -------------------------------------------
  * PASO 5: INICIAR EL SERVIDOR
  * -------------------------------------------
- * Esto pone al servidor a "escuchar" peticiones en el puerto 3000.
  */
 app.listen(port, () => {
     console.log(`¡Servidor Backend (Webhook) iniciado! 🚀`);
     console.log(`Escuchando en http://localhost:${port}`);
-    console.log(`El Webhook está en: http://localhost:${port}/api/crear-enlace-compra`);
-});
+});});
